@@ -1,4 +1,4 @@
 from app.utils.navegador import Navegador
 
-site = Navegador('www.google.com.br')
+site = Navegador('https://www.google.com.br')
 site.openNavegador()
