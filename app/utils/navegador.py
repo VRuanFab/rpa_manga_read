@@ -20,4 +20,25 @@ class Navegador:
         
     def openNavegador(self):
         self.driver.get(self.link)
-        time.sleep(6851)
+
+    def procurarElemento(self, search_type, element):
+        match search_type:
+            case 'XPATH':
+                tipo_pesquisa = By.XPATH
+
+            case 'ID':
+                tipo_pesquisa = By.ID
+                
+            case 'LINK_TEXT':
+                tipo_pesquisa = By.LINK_TEXT
+            
+            case 'NAME':
+                tipo_pesquisa = By.NAME
+                
+            case 'CLASS_NAME':
+                tipo_pesquisa = By.CLASS_NAME
+                
+            case 'TAG_NAME':
+                tipo_pesquisa = By.TAG_NAME
+        
+        return self.wait.until(EC.presence_of_element_located((tipo_pesquisa, element)))
