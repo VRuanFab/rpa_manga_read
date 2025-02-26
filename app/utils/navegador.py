@@ -19,47 +19,31 @@ class Navegador:
         
     def openNavegador(self):
         self.driver.get(self.link)
+        
+    def set_by(self, type):
+        match type:
+            case 'XPATH':
+                return By.XPATH
+
+            case 'ID':
+                return By.ID
+                
+            case 'LINK_TEXT':
+                return By.LINK_TEXT
+            
+            case 'NAME':
+                return By.NAME
+                
+            case 'CLASS_NAME':
+                return By.CLASS_NAME
+                
+            case 'TAG_NAME':
+                return By.TAG_NAME
 
     def procurarElemento(self, search_type, element):
-        match search_type:
-            case 'XPATH':
-                tipo_pesquisa = By.XPATH
-
-            case 'ID':
-                tipo_pesquisa = By.ID
-                
-            case 'LINK_TEXT':
-                tipo_pesquisa = By.LINK_TEXT
-            
-            case 'NAME':
-                tipo_pesquisa = By.NAME
-                
-            case 'CLASS_NAME':
-                tipo_pesquisa = By.CLASS_NAME
-                
-            case 'TAG_NAME':
-                tipo_pesquisa = By.TAG_NAME
-        
+        tipo_pesquisa = self.set_by(search_type)
         return self.wait.until(EC.presence_of_element_located((tipo_pesquisa, element)))
-    
-    def procurarArrayElementos(self, search_type, element):
-        match search_type:
-            case 'XPATH':
-                tipo_pesquisa = By.XPATH
 
-            case 'ID':
-                tipo_pesquisa = By.ID
-                
-            case 'LINK_TEXT':
-                tipo_pesquisa = By.LINK_TEXT
-            
-            case 'NAME':
-                tipo_pesquisa = By.NAME
-                
-            case 'CLASS_NAME':
-                tipo_pesquisa = By.CLASS_NAME
-                
-            case 'TAG_NAME':
-                tipo_pesquisa = By.TAG_NAME
-        
+    def procurarArrayElementos(self, search_type, element):
+        tipo_pesquisa = self.set_by(search_type)
         return self.wait.until(EC.presence_of_all_elements_located((tipo_pesquisa, element)))
