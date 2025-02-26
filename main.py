@@ -1,6 +1,5 @@
-from app.pages.index import RunRPA
+from app.index import RunRPA
 
 
-app = RunRPA('dan da dan', 15)
-app.passo1()
-app.passo2()
+app = RunRPA(nome_manga='dandadan', capitulo=15)
+app.begin()
