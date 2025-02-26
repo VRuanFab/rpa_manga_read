@@ -1,5 +1,6 @@
 import pyautogui
-import pywinauto
+from pywinauto import Application
+
 
 class AutoGUI:
     def __init__(self):
