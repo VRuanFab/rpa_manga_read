@@ -1,11 +1,6 @@
-import time
-from app.utils.navegador import Navegador
+from app.pages.index import RunRPA
 
 
-site = Navegador('https://www.google.com.br')
-site.openNavegador()
-
-elemento = site.procurarElemento('XPATH', "//*/textarea[@class='gLFyf']")
-elemento.send_keys('Levi comprou uma casa bonitona')
-
-time.sleep(348732)
+app = RunRPA('dan da dan', 15)
+app.passo1()
+app.passo2()
