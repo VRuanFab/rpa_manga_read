@@ -3,15 +3,16 @@ name = "rpa-manga"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Your Name",email = "you@example.com"}
+    {name = "Ruan Fabricio",email = "victor.ruanfab@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13, < 4"
 dependencies = [
     "python-dotenv (>=1.0.1,<2.0.0)",
     "selenium (>=4.29.0,<5.0.0)",
     "pyautogui (>=0.9.54,<0.10.0)",
-    "pywinauto (>=0.6.9,<0.7.0)"
+    "pywinauto (>=0.6.9,<0.7.0)",
+    "reportlab (>=4.3.1,<5.0.0)"
 ]
 
 
