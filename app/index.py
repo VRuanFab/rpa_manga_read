@@ -1,5 +1,6 @@
 from app.pages.main_page._1_enter.enter import AcessarPagina
 from app.pages.manga_selecionado._1_escolher_capitulo.index import Capitulos
+from app.pages.dentro_manga._1_baixar.index import BaixarImagens
 import time
 
 
@@ -15,6 +16,7 @@ class RunRPA():
     def begin(self):
         self.passo1()
         self.passo2()
+        self.passo3()
 
     def passo1(self):
         self.page.abrirPagina()
@@ -24,3 +26,6 @@ class RunRPA():
     def passo2(self):
         app = Capitulos(self.page, self.capitulo)
         app.listaCapitulos()
+        
+    def passo3(self):
+        BaixarImagens(self.page).baixar()

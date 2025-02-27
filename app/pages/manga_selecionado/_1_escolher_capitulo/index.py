@@ -20,6 +20,3 @@ class Capitulos:
         
         escolhendo_idioma = self.driver.procurarElemento('XPATH', f"//*/h4[text()='Chapter {self.capitulo}']/../../../../../../../../..//*/img[@title='Portuguese (Br)']/../..")
         escolhendo_idioma.click()
-        
-        print(f'esperando {self.capitulo}')
-        time.sleep(348732)
