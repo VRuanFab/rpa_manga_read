@@ -11,14 +11,14 @@ class Os_use:
     def __current_path(self):
         return os.getcwd().replace('\\', '/')
     
-    def to_folder(self, caminho=''):
+    def path_to_folder(self, caminho=''):
         return f'{self.__current_path()}{caminho}'
     
     def salvar_arquivo(self, caminho, nome_arquivo, counterSlashes=False):
         if counterSlashes:
-            return f'{self.to_folder(caminho=caminho)}/{nome_arquivo}'.replace('/', '\\')
+            return f'{self.path_to_folder(caminho=caminho)}/{nome_arquivo}'.replace('/', '\\')
         else:
-            return f'{self.to_folder(caminho=caminho)}/{nome_arquivo}'
+            return f'{self.path_to_folder(caminho=caminho)}/{nome_arquivo}'
 
 class WinAuto:
     def __init__(self):
