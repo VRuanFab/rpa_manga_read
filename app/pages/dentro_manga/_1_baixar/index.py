@@ -11,19 +11,32 @@ class BaixarImagens:
         
     def baixar(self):
         time.sleep(2)
-        element_img = self.driver.procurarArrayElementos('XPATH', f"//*/div[@class='mx-auto h-full md--page  flex']//*")
+        self.driver.esperarVisibilidade('XPATH', f"//*/div[@class='mx-auto h-full md--page  flex']//*")
         
-        # Array.from(document.querySelectorAll('div.mx-auto.h-full.md--page.flex')[0].children)
+        paginas = self.driver.procurarArrayElementos('XPATH', f"//*/div[@class='slider-dividers']/*")
         
-        for childs in element_img:
-            print(childs.get_attribute('class'))
+        print('ta baixado')
+        print(paginas.get_attribute('class'))
+        
+        time.sleep(1.5)
+        
+        
+        print("teste array para baixar a cada página")
+        time.sleep(4325)
 
-        # time.sleep(4)
-
-        # self.winApp.moveToMiddle()
+        self.winApp.moveToMiddle()
         
-        # self.winApp.pressKey('down', presses=2)
-        # self.winApp.pressKey('enter')
+        self.winApp.click('right')
+        self.winApp.pressKey('down', presses=2)
+        self.winApp.pressKey('enter')
+        
+        time.sleep(1)
+
+        self.winApp.conectar_janela('Salvar como')
+        
+        self.winApp.escrever(self.winApp.salvar_arquivo('/app/assets', 'Dan da Dan', counterSlashes=True))
+        
+        self.winApp.pressKey('enter')
         
         print(f'esperando')
         time.sleep(348732)

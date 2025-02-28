@@ -14,8 +14,11 @@ class Os_use:
     def to_folder(self, caminho=''):
         return f'{self.__current_path()}{caminho}'
     
-    def salvar_arquivo(self, nome_arquivo, caminho):
-        return f'{self.to_folder(caminho=caminho)}/{nome_arquivo}'
+    def salvar_arquivo(self, caminho, nome_arquivo, counterSlashes=False):
+        if counterSlashes:
+            return f'{self.to_folder(caminho=caminho)}/{nome_arquivo}'.replace('/', '\\')
+        else:
+            return f'{self.to_folder(caminho=caminho)}/{nome_arquivo}'
 
 class WinAuto:
     def __init__(self):
@@ -34,5 +37,11 @@ class WinUse(Os_use, WinAuto):
     def pressKey(self, key, presses=1):
         self.autogui.press(keys= key, presses= presses)
         
+    def escrever(self, texto, intervalo = 0.01):
+        self.autogui.write(texto, interval=intervalo)
+        
     def moveToMiddle(self):
         self.autogui.moveTo(self.autogui.size().width/2, self.autogui.size().height/2)
+        
+    def click(self, button='left'):
+        self.autogui.click(button=button)

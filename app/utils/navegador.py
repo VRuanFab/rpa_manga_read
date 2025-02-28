@@ -44,6 +44,10 @@ class Navegador:
         tipo_pesquisa = self.set_by(search_type)
         return self.wait.until(EC.presence_of_element_located((tipo_pesquisa, element)))
 
+    def esperarVisibilidade(self, search_type, element):
+        tipo_pesquisa = self.set_by(search_type)
+        return self.wait.until(EC.presence_of_element_located((tipo_pesquisa, element)))
+
     def procurarArrayElementos(self, search_type, element):
         tipo_pesquisa = self.set_by(search_type)
         return self.wait.until(EC.presence_of_all_elements_located((tipo_pesquisa, element)))
