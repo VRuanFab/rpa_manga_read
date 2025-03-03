@@ -12,6 +12,8 @@ class Navegador:
         chrome_options.add_argument('--ignore-ssl-errors')
         chrome_options.add_argument('--incognito')
         chrome_options.add_argument('--start-maximized')
+        # chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--disable-dev-shm-usage')
         
         self.driver = webdriver.Chrome(options=chrome_options)
         self.wait = WebDriverWait(self.driver, timeout=35)
@@ -20,7 +22,7 @@ class Navegador:
     def openNavegador(self):
         self.driver.get(self.link)
         
-    def set_by(self, type):
+    def __set_by(self, type):
         match type:
             case 'XPATH':
                 return By.XPATH
@@ -40,10 +42,25 @@ class Navegador:
             case 'TAG_NAME':
                 return By.TAG_NAME
 
-    def procurarElemento(self, search_type, element):
-        tipo_pesquisa = self.set_by(search_type)
+    def procurarElemento(self, search_type: str, element: str):
+        """ Procura pelo elemento ao carregar a página """
+        
+        tipo_pesquisa = self.__set_by(search_type)
         return self.wait.until(EC.presence_of_element_located((tipo_pesquisa, element)))
 
-    def procurarArrayElementos(self, search_type, element):
-        tipo_pesquisa = self.set_by(search_type)
+    def procurarArrayElementos(self, search_type: str, element: str):
+        """ Retorna os childs de um elemento em array """
+        
+        tipo_pesquisa = self.__set_by(search_type)
         return self.wait.until(EC.presence_of_all_elements_located((tipo_pesquisa, element)))
+    
+    def procurarElementoVisivel(self, search_type: str, element: str):
+        """ Espera o elemento estar visível na tela """
+        
+        tipo_pesquisa = self.__set_by(search_type)
+        return self.wait.until(EC.visibility_of_element_located((tipo_pesquisa, element)))
+        
+    def exec_js(self, script: str):
+        """ Executa funções em javascript """
+        
+        self.driver.execute_script(script)
