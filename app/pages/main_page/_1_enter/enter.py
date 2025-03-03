@@ -31,6 +31,7 @@ class AcessarPagina(Navegador):
                 
                 if pesquisa == resultado_pesquisa:
                     item.click()
+                    
 
         except Exception as err:
             print(err)

@@ -28,4 +28,7 @@ class RunRPA():
         app.listaCapitulos()
         
     def passo3(self):
-        BaixarImagens(self.page).baixar()
+        BaixarImagens(self.page, self.nome_manga, self.capitulo).baixar()
+        
+    def passo4(self):
+        print('salvar em pdf as coisas')
