@@ -4,9 +4,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 
+from app.utils.windows_use import WinUse
+
 class Navegador:
     def __init__(self, link):
-        
+        # temp_download_folder = WinUse().path_to_folder()
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--ignore-certificate-errors')
         chrome_options.add_argument('--ignore-ssl-errors')

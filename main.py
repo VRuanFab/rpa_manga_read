@@ -1,5 +1,5 @@
 from app.index import RunRPA
 
 
-app = RunRPA(nome_manga='dandadan', capitulo=15)
+app = RunRPA(nome_manga='jujutsu kaisen', capitulo=20)
 app.begin()

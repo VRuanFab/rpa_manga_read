@@ -11,10 +11,19 @@ class Os_use:
     def __current_path(self):
         return os.getcwd().replace('\\', '/')
     
-    def path_to_folder(self, caminho=''):
+    def _permicao(self, caminho, permicao):
+        """ define permissao para pasta """
+        self.os_use.chmod(caminho, permicao)
+    
+    
+    
+    def path_to_folder(self, caminho='', counterSlashes=False):
         """ diz o caminho para a pasta (padrão é o caminho main.py) """
         
-        return f'{self.__current_path()}{caminho}'
+        if counterSlashes:
+            return f'{self.__current_path()}{caminho}'.replace('/', '\\')
+        else:
+            return f'{self.__current_path()}{caminho}'
     
     def salvar_arquivo(self, caminho: str, nome_arquivo: str, counterSlashes=False):
         """ Salva arquivo com o caminho e nome e qual barra """
@@ -23,6 +32,9 @@ class Os_use:
             return f'{self.path_to_folder(caminho=caminho)}/{nome_arquivo}'.replace('/', '\\')
         else:
             return f'{self.path_to_folder(caminho=caminho)}/{nome_arquivo}'
+        
+    def listarPasta(self, caminho: str):
+        return self.os_use.listdir(caminho)
 
 class WinAuto:
     def __init__(self):
