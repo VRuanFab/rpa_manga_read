@@ -1,10 +1,10 @@
 from app.utils.navegador import Navegador
+from app.utils.windows_use import WinUse
 import time
 
 class AcessarPagina(Navegador):
     def __init__(self):
-        self.site = 'https://mangadex.org/'
-        super().__init__(self.site)
+        super().__init__(WinUse().get_env('SITE'))
     
     def abrirPagina(self):
         super().openNavegador()

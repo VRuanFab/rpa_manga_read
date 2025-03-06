@@ -2,9 +2,10 @@ import pyautogui
 import os
 import keyboard
 from pywinauto import Application
+from dotenv import load_dotenv
 
 
-class Os_use:
+class __Os_use:
     def __init__(self):
         self.os_use = os
         super().__init__()
@@ -16,7 +17,10 @@ class Os_use:
         """ define permissao para pasta """
         self.os_use.chmod(caminho, permicao)
     
-    
+    def get_env(self, variavel: str):
+        """ Retorna a variavel de ambiente """
+        load_dotenv()
+        return os.getenv(variavel)
     
     def path_to_folder(self, caminho='', counterSlashes=False):
         """ diz o caminho para a pasta (padrão é o caminho main.py) """
@@ -37,7 +41,7 @@ class Os_use:
     def listarPasta(self, caminho: str):
         return self.os_use.listdir(caminho)
 
-class WinAuto:
+class __WinAuto:
     def __init__(self):
         self.win_app = Application(backend='win32')
         super().__init__()
@@ -46,7 +50,7 @@ class WinAuto:
         self.win_app.connect(title= nome_janela, timeout= timeout)
 
 
-class WinUse(Os_use, WinAuto):
+class WinUse(__Os_use, __WinAuto):
     def __init__(self):
         self.autogui = pyautogui
         super().__init__()
