@@ -1,5 +1,6 @@
 import pyautogui
 import os
+import keyboard
 from pywinauto import Application
 
 
@@ -55,10 +56,10 @@ class WinUse(Os_use, WinAuto):
         
         self.autogui.press(keys= key, presses= presses)
         
-    def escrever(self, texto : str, intervalo = 0.01):
+    def escrever(self, texto : str, intervalo = 0.05):
         """ Usa o teclado para escrever e com um intervalo """
         
-        self.autogui.write(texto, interval=intervalo)
+        keyboard.write(texto, delay=intervalo)
         
     def moveToMiddle(self):
         """ Move o mouse para o centro da tela """

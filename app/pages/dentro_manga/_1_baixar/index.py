@@ -30,7 +30,7 @@ class BaixarImagens:
             time.sleep(1)
             
             self.winApp.conectar_janela('Salvar como')
-            self.winApp.escrever(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}', counterSlashes=True))
+            self.winApp.escrever(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg', counterSlashes=True))
             self.winApp.pressKey('enter')
             
             time.sleep(1)

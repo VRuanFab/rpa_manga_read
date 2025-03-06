@@ -1,4 +1,7 @@
 __pycache__
 .env
 
-assets/
+app/assets/paginas/*
+app/assets/manga_baixado/*
+
+notes
