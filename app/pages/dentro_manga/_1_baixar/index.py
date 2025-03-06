@@ -16,6 +16,9 @@ class BaixarImagens:
         self.driver.procurarElemento('XPATH', f"//*/div[@class='mx-auto h-full md--page  flex']//*")
         
         paginas = self.driver.procurarArrayElementos('XPATH', f"//*/div[@class='slider-dividers']/*")
+        self.lenPaginas = len(paginas)
+        
+        self.listOrdem = []
         
         for page_number in range(len(paginas) - 1):
             self.winApp.moveToMiddle()
@@ -27,9 +30,14 @@ class BaixarImagens:
             time.sleep(1)
             
             self.winApp.conectar_janela('Salvar como')
-            self.winApp.escrever(self.winApp.salvar_arquivo('/app/assets', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}', counterSlashes=True))
+            self.winApp.escrever(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg', counterSlashes=True))
             self.winApp.pressKey('enter')
             
             time.sleep(1)
             self.driver.exec_js("""document.querySelectorAll('div.md--reader-menu')[0].children[0].querySelectorAll('div.flex')[4].children[2].click()""")
             time.sleep(2)
+            
+            self.listOrdem.append(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg', counterSlashes=True))
+            
+    def retornarOrdem(self):
+        return self.listOrdem
