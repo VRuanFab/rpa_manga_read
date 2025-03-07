@@ -20,7 +20,7 @@ class BaixarImagens:
         
         self.listOrdem = []
         
-        for page_number in range(len(paginas) - 1):
+        for page_number in range(len(paginas)):
             self.winApp.moveToMiddle()
             
             self.winApp.click('right')
