@@ -1,4 +1,4 @@
 from app.index import RunRPA
 
 
-RunRPA(nome_manga='dandadan', capitulo=11).begin()
+RunRPA(nome_manga='dandadan', capitulo=13).begin()

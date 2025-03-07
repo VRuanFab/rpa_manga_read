@@ -34,8 +34,10 @@ class BaixarImagens:
             self.winApp.pressKey('enter')
             
             time.sleep(1)
-            self.driver.exec_js("""document.querySelectorAll('div.md--reader-menu')[0].children[0].querySelectorAll('div.flex')[4].children[2].click()""")
-            time.sleep(2)
+            
+            if page_number < len(paginas):
+                self.driver.exec_js("""document.querySelectorAll('div.md--reader-menu')[0].children[0].querySelectorAll('div.flex')[4].children[2].click()""")
+                time.sleep(2)
             
             self.listOrdem.append(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg', counterSlashes=True))
             
