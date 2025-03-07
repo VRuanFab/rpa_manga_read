@@ -60,7 +60,7 @@ class WinUse(__Os_use, __WinAuto):
         
         self.autogui.press(keys= key, presses= presses)
         
-    def escrever(self, texto : str, intervalo = 0.05):
+    def escrever(self, texto : str, intervalo = 0.03):
         """ Usa o teclado para escrever e com um intervalo """
         
         keyboard.write(texto, delay=intervalo)
