@@ -3,26 +3,21 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
-
 from app.utils.windows_use import WinUse
 
 class Navegador:
-    def __init__(self, link):
-        # temp_download_folder = WinUse().path_to_folder()
+    def openNavegador(self, link):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--ignore-certificate-errors')
         chrome_options.add_argument('--ignore-ssl-errors')
         chrome_options.add_argument('--incognito')
         chrome_options.add_argument('--start-maximized')
-        # chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-dev-shm-usage')
         
         self.driver = webdriver.Chrome(options=chrome_options)
         self.wait = WebDriverWait(self.driver, timeout=35)
-        self.link = link
-        
-    def openNavegador(self):
-        self.driver.get(self.link)
+
+        self.driver.get(link)
         
     def __set_by(self, type):
         match type:
@@ -46,7 +41,6 @@ class Navegador:
 
     def procurarElemento(self, search_type: str, element: str):
         """ Procura pelo elemento ao carregar a página """
-        
         tipo_pesquisa = self.__set_by(search_type)
         return self.wait.until(EC.presence_of_element_located((tipo_pesquisa, element)))
 
@@ -64,5 +58,4 @@ class Navegador:
         
     def exec_js(self, script: str):
         """ Executa funções em javascript """
-        
         self.driver.execute_script(script)

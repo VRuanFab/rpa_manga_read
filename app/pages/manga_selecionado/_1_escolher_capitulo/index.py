@@ -1,3 +1,4 @@
+from app.utils.navegador import Navegador
 import time
 
 

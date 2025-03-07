@@ -3,5 +3,6 @@ __pycache__
 
 app/assets/paginas/*
 app/assets/manga_baixado/*
-
+tests
+rpa_manga/*
 notes
