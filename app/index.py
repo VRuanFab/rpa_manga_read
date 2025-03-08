@@ -49,3 +49,6 @@ class RunRPA(Pages):
     def passo5(self):
         self.prevenir.check_pasta_existe('/app/assets/paginas_img_compactada')
         Compactar(file_list=self.imagens, nome_arquivo=f'{self.nome_manga} capitulo {self.capitulo}')
+        
+        for file in self.imagens:
+            WinUse().os_use.remove(file)
