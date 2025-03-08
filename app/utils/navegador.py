@@ -6,6 +6,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from app.utils.windows_use import WinUse
 
 class Navegador:
+    def __init__(self, otherDrive=None):
+        if otherDrive != None:
+            self.driver = otherDrive
+            self.wait = WebDriverWait(self.driver, timeout=35)
+    
     def openNavegador(self, link):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--ignore-certificate-errors')

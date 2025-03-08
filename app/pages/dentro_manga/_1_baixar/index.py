@@ -22,7 +22,7 @@ class BaixarImagens:
         
         for page_number in range(len(paginas)):
             self.winApp.moveToMiddle()
-            
+            time.sleep(3)
             self.winApp.click('right')
             self.winApp.pressKey('down', presses=2)
             self.winApp.pressKey('enter')
@@ -35,7 +35,7 @@ class BaixarImagens:
             
             time.sleep(1)
             
-            if page_number < len(paginas):
+            if page_number < len(paginas) - 1:
                 self.driver.exec_js("""document.querySelectorAll('div.md--reader-menu')[0].children[0].querySelectorAll('div.flex')[4].children[2].click()""")
                 time.sleep(2)
             
