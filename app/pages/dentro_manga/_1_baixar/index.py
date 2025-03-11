@@ -23,25 +23,22 @@ class BaixarImagens:
         
         self.listOrdem = []
         
-        try:
-            try:
-                current_image = self.driver.procurarElemento('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto' and @style!='display: none;']")
-            except:
-                current_image = self.driver.procurarArrayElementos('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto']")[0]
+        for page_number in range(len(paginas)):
             
-            print('eis aqui a imagem:')
-            print(current_image)
-        except:
-            pass
-        
-        b64Image = self.driver.exec_js(self.download.script, current_image)
-        
-        print(f'b64Img: {b64Image}')
-        self.download.extract(b64Image)
-        
-        time.sleep(5326)
-        
-        # for page_number in range(len(paginas)):
+            try:
+                try:
+                    current_image = self.driver.procurarElemento('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto' and @style!='display: none;']")
+                except:
+                    current_image = self.driver.procurarArrayElementos('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto']")[0]
+                
+                print('eis aqui a imagem:')
+                print(current_image)
+            except:
+                pass
+            
+            b64Image = self.driver.exec_js(self.download.script, current_image)
+            
+            self.download.extract(b64Image, self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg'))
         #     self.winApp.moveToMiddle()
         #     time.sleep(3)
         #     self.winApp.click('right')
@@ -56,11 +53,11 @@ class BaixarImagens:
             
         #     time.sleep(1)
             
-        #     if page_number < len(paginas) - 1:
-        #         self.driver.exec_js("""document.querySelectorAll('div.md--reader-menu')[0].children[0].querySelectorAll('div.flex')[4].children[2].click()""")
-        #         time.sleep(2)
+            if page_number < len(paginas) - 1:
+                self.driver.exec_js("""document.querySelectorAll('div.md--reader-menu')[0].children[0].querySelectorAll('div.flex')[4].children[2].click()""")
+                time.sleep(2)
             
-            # self.listOrdem.append(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg', counterSlashes=True))
+            self.listOrdem.append(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg', counterSlashes=True))
             
     def retornarOrdem(self):
         return self.listOrdem

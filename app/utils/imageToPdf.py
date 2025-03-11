@@ -25,7 +25,7 @@ class ImagePil:
             
             
 class Download_img:
-    def __init__(self):
+    def __init__(self, ):
         self.script =   """
                         var img = arguments[0];
                         var canvas = document.createElement('canvas');
@@ -36,7 +36,7 @@ class Download_img:
                         return canvas.toDataURL('image/png').split(',')[1]; // Get Base64 data
                         """
                         
-    def extract(self, b64_file):
+    def extract(self, b64_file, image_path):
         image = base64.b64decode(b64_file)
-        with open("downloaded_image.png", "wb") as file:
+        with open(image_path, "wb") as file:
             file.write(image)

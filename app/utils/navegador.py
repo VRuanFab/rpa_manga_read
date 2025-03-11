@@ -64,7 +64,7 @@ class Navegador:
         
     def exec_js(self, script: str, args = None):
         """ Executa funções em javascript """
-        self.driver.execute_script(script, args)
+        return self.driver.execute_script(script, args)
         
     def focar_pagina(self, pagina= -1):
         self.driver.switch_to.window(self.driver.window_handles[pagina])
