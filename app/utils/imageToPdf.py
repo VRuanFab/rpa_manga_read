@@ -1,5 +1,6 @@
 from PIL import Image
 from app.utils.windows_use import WinUse
+import base64
 
 class ImagePil:
     def __init__(self, nome_manga, capitulo):
@@ -21,3 +22,21 @@ class ImagePil:
             fotos_pdf[0].save(caminhoPdf_salvar, save_all=True, append_images = fotos_pdf[1:])
         except Exception as err:
             print(err)
+            
+            
+class Download_img:
+    def __init__(self):
+        self.script =   """
+                        var img = arguments[0];
+                        var canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        var context = canvas.getContext('2d');
+                        context.drawImage(img, 0, 0);
+                        return canvas.toDataURL('image/png').split(',')[1]; // Get Base64 data
+                        """
+                        
+    def extract(self, b64_file):
+        image = base64.b64decode(b64_file)
+        with open("downloaded_image.png", "wb") as file:
+            file.write(image)

@@ -18,6 +18,7 @@ class Navegador:
         chrome_options.add_argument('--incognito')
         chrome_options.add_argument('--start-maximized')
         chrome_options.add_argument('--disable-dev-shm-usage')
+        chrome_options.add_argument('--headless')
         
         self.driver = webdriver.Chrome(options=chrome_options)
         self.wait = WebDriverWait(self.driver, timeout=35)
@@ -61,6 +62,9 @@ class Navegador:
         tipo_pesquisa = self.__set_by(search_type)
         return self.wait.until(EC.visibility_of_element_located((tipo_pesquisa, element)))
         
-    def exec_js(self, script: str):
+    def exec_js(self, script: str, args = None):
         """ Executa funções em javascript """
-        self.driver.execute_script(script)
+        self.driver.execute_script(script, args)
+        
+    def focar_pagina(self, pagina= -1):
+        self.driver.switch_to.window(self.driver.window_handles[pagina])
