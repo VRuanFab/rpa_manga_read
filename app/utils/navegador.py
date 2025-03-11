@@ -67,4 +67,4 @@ class Navegador:
         return self.driver.execute_script(script, args)
         
     def focar_pagina(self, pagina= -1):
-        self.driver.switch_to.window(self.driver.window_handles[pagina])
+        return self.driver.switch_to.window(self.driver.window_handles[pagina])
