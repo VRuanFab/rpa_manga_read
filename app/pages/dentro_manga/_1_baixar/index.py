@@ -39,19 +39,6 @@ class BaixarImagens:
             b64Image = self.driver.exec_js(self.download.script, current_image)
             
             self.download.extract(b64Image, self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg'))
-        #     self.winApp.moveToMiddle()
-        #     time.sleep(3)
-        #     self.winApp.click('right')
-        #     self.winApp.pressKey('down', presses=2)
-        #     self.winApp.pressKey('enter')
-            
-        #     time.sleep(1)
-
-        #     self.winApp.conectar_janela('Salvar como')
-        #     self.winApp.escrever(self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg', counterSlashes=True))
-        #     self.winApp.pressKey('enter')
-            
-        #     time.sleep(1)
             
             if page_number < len(paginas) - 1:
                 self.driver.exec_js("""document.querySelectorAll('div.md--reader-menu')[0].children[0].querySelectorAll('div.flex')[4].children[2].click()""")
