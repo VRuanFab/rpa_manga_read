@@ -30,9 +30,6 @@ class BaixarImagens:
                     current_image = self.driver.procurarElemento('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto' and @style!='display: none;']")
                 except:
                     current_image = self.driver.procurarArrayElementos('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto']")[0]
-                
-                print('eis aqui a imagem:')
-                print(current_image)
             except:
                 pass
             
