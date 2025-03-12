@@ -22,8 +22,15 @@ class RunRPA(Pages):
     def _definindoParametros(self):
         self.nome_manga = str(input('Nome do mangá:\n'))
         self.capitulo = str(input('\nCapítulo:\n'))
-        super().__init__(self.nome_manga, self.capitulo)
         
+        if WinUse().check_shortcut_exist() == False:
+            self.criar_atalho = str(input('Deseja criar um atalho para a pasta de mangás em seu desktop (área de trabalho)? (S ou N)'))
+            self.criar_atalho = False if self.criar_atalho.lower() == 'n' else True
+        else:
+            self.criar_atalho = False
+
+        super().__init__(self.nome_manga, self.capitulo)
+
 
     def _passo1(self):
         self.main_page.pesquisarManga(self.nome_manga)
@@ -54,3 +61,6 @@ class RunRPA(Pages):
         
         for file in self.imagens:
             WinUse().os_use.remove(file)
+        
+        if self.criar_atalho:
+            WinUse().criar_shortcut()
