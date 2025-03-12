@@ -25,7 +25,7 @@ class ImagePil:
             
             
 class Download_img:
-    def __init__(self, ):
+    def __init__(self):
         self.script =   """
                         var img = arguments[0];
                         var canvas = document.createElement('canvas');

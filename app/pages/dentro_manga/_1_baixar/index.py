@@ -1,5 +1,6 @@
 from app.utils.windows_use import WinUse
-from app.utils.imageToPdf import Download_img
+from app.utils.navegador import Navegador
+from app.utils.image_utils import Download_img
 import time
 import requests
 
@@ -8,7 +9,7 @@ class BaixarImagens:
     def __init__(self, driver, nome_anime, capitulo):
         self.winApp = WinUse()
         self.download = Download_img()
-        self.driver = driver
+        self.driver = Navegador(driver)
         self.nome_anime = nome_anime
         self.capitulo = capitulo
         

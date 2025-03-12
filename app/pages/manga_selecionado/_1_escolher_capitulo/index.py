@@ -5,9 +5,7 @@ import time
 class Capitulos:
     def __init__(self, driver, capitulo):
         self.capitulo = capitulo
-        self.driver = driver
-        
-        print('escolha seu capitulo')
+        self.driver = Navegador(driver)
         
     def listaCapitulos(self):
         botoes_auxiliar = self.driver.procurarArrayElementos('XPATH', "//*/div[@class='flex gap-x-2 mb-4']/button")[1]

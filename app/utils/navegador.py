@@ -9,7 +9,6 @@ class Navegador:
     def __init__(self, otherDrive=None):
         if otherDrive != None:
             self.driver = otherDrive
-            self.wait = WebDriverWait(self.driver, timeout=35)
     
     def openNavegador(self, link):
         chrome_options = webdriver.ChromeOptions()
@@ -21,9 +20,9 @@ class Navegador:
         chrome_options.add_argument('--headless')
         
         self.driver = webdriver.Chrome(options=chrome_options)
-        self.wait = WebDriverWait(self.driver, timeout=35)
 
         self.driver.get(link)
+        return self.driver
         
     def __set_by(self, type):
         match type:
@@ -45,22 +44,20 @@ class Navegador:
             case 'TAG_NAME':
                 return By.TAG_NAME
 
-    def procurarElemento(self, search_type: str, element: str):
+    def procurarElemento(self, search_type: str, element: str, timeout:float=35):
         """ Procura pelo elemento ao carregar a página """
         tipo_pesquisa = self.__set_by(search_type)
-        return self.wait.until(EC.presence_of_element_located((tipo_pesquisa, element)))
+        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located((tipo_pesquisa, element)))
 
-    def procurarArrayElementos(self, search_type: str, element: str):
+    def procurarArrayElementos(self, search_type: str, element: str, timeout:float=35):
         """ Retorna os childs de um elemento em array """
-        
         tipo_pesquisa = self.__set_by(search_type)
-        return self.wait.until(EC.presence_of_all_elements_located((tipo_pesquisa, element)))
+        return WebDriverWait(self.driver, timeout).until(EC.presence_of_all_elements_located((tipo_pesquisa, element)))
     
-    def procurarElementoVisivel(self, search_type: str, element: str):
+    def procurarElementoVisivel(self, search_type: str, element: str, timeout:float=35):
         """ Espera o elemento estar visível na tela """
-        
         tipo_pesquisa = self.__set_by(search_type)
-        return self.wait.until(EC.visibility_of_element_located((tipo_pesquisa, element)))
+        return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located((tipo_pesquisa, element)))
         
     def exec_js(self, script: str, args = None):
         """ Executa funções em javascript """
