@@ -1,13 +1,9 @@
 from app.utils.navegador import Navegador
-from app.utils.windows_use import WinUse
 import time
 
 class AcessarPagina:
-    def __init__(self):
-        self.driver = Navegador()
-    
-    def abrirPagina(self):
-        self.driver.openNavegador(WinUse().get_env('SITE'))
+    def __init__(self, driver):
+        self.driver = Navegador(driver)
 
     def pesquisarManga(self, nome_manga):
         nome_mange = nome_manga
