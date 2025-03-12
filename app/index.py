@@ -24,7 +24,7 @@ class RunRPA(Pages):
         self.capitulo = str(input('\nCapítulo:\n'))
         
         if WinUse().check_shortcut_exist() == False:
-            self.criar_atalho = str(input('Deseja criar um atalho para a pasta de mangás em seu desktop (área de trabalho)? (S ou N)'))
+            self.criar_atalho = str(input('\nDeseja criar um atalho para a pasta de mangás em seu desktop (área de trabalho)? (S ou N)\n'))
             self.criar_atalho = False if self.criar_atalho.lower() == 'n' else True
         else:
             self.criar_atalho = False
