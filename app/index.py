@@ -3,6 +3,7 @@ from app.utils.image_utils import ImagePil
 from app.utils.windows_use import WinUse
 from app.utils.prevencao_erros import Prevencao_erros
 from app.utils.compactar_imagens import Compactar
+from app.utils.toast import Aviso
 import time
 
 
@@ -22,6 +23,7 @@ class RunRPA(Pages):
             self._passo4(self.capitulo)
             self._passo5(self.capitulo)
             self.fechar_navegador()
+            Aviso(self.nome_manga).aviso_terminou()
         else:
             for i in range(int(self.capitulo), int(self.terminar_em_capitulo) + 1):
                 try:
@@ -32,6 +34,7 @@ class RunRPA(Pages):
                     self._passo4(capitulo=i)
                     self._passo5(capitulo=i)
                     self.fechar_navegador()
+                    Aviso(self.nome_manga).aviso_terminou()
                 except Exception as err:
                     print(err)
         
