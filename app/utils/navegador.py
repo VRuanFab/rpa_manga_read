@@ -65,3 +65,6 @@ class Navegador:
         
     def focar_pagina(self, pagina= -1):
         return self.driver.switch_to.window(self.driver.window_handles[pagina])
+    
+    def fechar_navegador(self):
+        self.driver.quit()

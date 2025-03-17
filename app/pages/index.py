@@ -11,3 +11,7 @@ class Pages(Navegador):
         self.main_page = AcessarPagina(self.driver)
         self.manga_selecionado = Capitulos(driver=self.driver, capitulo=capitulo)
         self.dentro_manga = BaixarImagens(driver=self.driver, nome_anime=nome_anime, capitulo=capitulo)
+        
+        
+    def fechar_navegador(self):
+        return super().fechar_navegador()

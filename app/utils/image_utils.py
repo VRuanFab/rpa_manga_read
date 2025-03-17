@@ -32,7 +32,7 @@ class Download_img:
                         canvas.width = img.width;
                         canvas.height = img.height;
                         var context = canvas.getContext('2d');
-                        context.drawImage(img, 0, 0);
+                        context.drawImage(img, 5, 5);
                         return canvas.toDataURL('image/png').split(',')[1]; // Get Base64 data
                         """
                         
