@@ -68,11 +68,12 @@ class __Os_use:
         
         for options in options_desktop:
             if checkToTrue == False:
-                desktop_path = self.os_use.path.join(self.os_use.path.expanduser("~"), f'{options}\\mangás')
-                checking = self.os_use.path.exists(desktop_path)
+                desktop_path = self.os_use.path.join(self.os_use.path.expanduser("~"), f'{options}\\mangás.lnk')
                 
+                checking = self.os_use.path.exists(desktop_path)
                 if checking == True:
                     checkToTrue = True
+        
         return checkToTrue
 
 class __WinAuto:

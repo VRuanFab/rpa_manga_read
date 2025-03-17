@@ -2,7 +2,6 @@ from app.utils.windows_use import WinUse
 from app.utils.navegador import Navegador
 from app.utils.image_utils import Download_img
 import time
-import requests
 
 
 class BaixarImagens:
@@ -28,13 +27,17 @@ class BaixarImagens:
             
             try:
                 try:
-                    current_image = self.driver.procurarElemento('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto' and @style!='display: none;']")
+                    current_image = self.driver.procurarElementoVisivel('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto' and @style!='display: none;']", timeout=60)
                 except:
-                    current_image = self.driver.procurarArrayElementos('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto']")[0]
+                    current_image = self.driver.procurarElementoVisivel('XPATH', "//*/img[@class='img sp limit-width limit-height mx-auto']", timeout=60)
             except:
                 pass
             
+            time.sleep(1)
+            
             b64Image = self.driver.exec_js(self.download.script, current_image)
+            
+            time.sleep(1)
             
             self.download.extract(b64Image, self.winApp.salvar_arquivo('/app/assets/paginas', f'{self.nome_anime} cap {self.capitulo} pag {page_number + 1}.jpg'))
             

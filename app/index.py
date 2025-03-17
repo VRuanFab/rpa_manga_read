@@ -13,23 +13,44 @@ class RunRPA(Pages):
 
     def begin(self):
         self._definindoParametros()
-        self._passo1()
-        self._passo2()
-        self._passo3()
-        self._passo4()
-        self._passo5()
+        
+        if self.terminar_em_capitulo == None:
+            super().__init__(self.nome_manga, self.capitulo)
+            self._passo1()
+            self._passo2()
+            self._passo3()
+            self._passo4(self.capitulo)
+            self._passo5(self.capitulo)
+            self.fechar_navegador()
+        else:
+            for i in range(int(self.capitulo), int(self.terminar_em_capitulo) + 1):
+                try:
+                    super().__init__(self.nome_manga, i)
+                    self._passo1()
+                    self._passo2()
+                    self._passo3()
+                    self._passo4(capitulo=i)
+                    self._passo5(capitulo=i)
+                    self.fechar_navegador()
+                except Exception as err:
+                    print(err)
         
     def _definindoParametros(self):
+        self.terminar_em_capitulo = None
         self.nome_manga = str(input('Nome do mangá:\n'))
-        self.capitulo = str(input('\nCapítulo:\n'))
+        varios_caps = str(input('\nDeseja baixar mais de um capitulo? (S ou N)\n \n'))
+        varios_caps = True if varios_caps.lower() == 's' else False
+        
+        self.capitulo = str(input('\nCapítulo:\n')) if varios_caps == False else str(input('\nQual capitulo começar:\n'))
+
+        if varios_caps == True:
+            self.terminar_em_capitulo = str(input('\nAté capitulo:\n'))
         
         if WinUse().check_shortcut_exist() == False:
             self.criar_atalho = str(input('\nDeseja criar um atalho para a pasta de mangás em seu desktop (área de trabalho)? (S ou N)\n'))
             self.criar_atalho = False if self.criar_atalho.lower() == 'n' else True
         else:
             self.criar_atalho = False
-
-        super().__init__(self.nome_manga, self.capitulo)
 
 
     def _passo1(self):
@@ -44,9 +65,9 @@ class RunRPA(Pages):
         app.baixar()
         self.ordemPagina = app.retornarOrdem()
         
-    def _passo4(self):
+    def _passo4(self, capitulo):
         winApp = WinUse()
-        pdfTransform = ImagePil(self.nome_manga, self.capitulo)
+        pdfTransform = ImagePil(self.nome_manga, capitulo)
         self.prevenir.check_pasta_existe('/app/assets/paginas')
         self.prevenir.check_pasta_existe(f'/app/assets/manga_baixado/{self.nome_manga}')
 
@@ -55,9 +76,9 @@ class RunRPA(Pages):
         self.imagens = [nome_img for nome_img in self.ordemPagina]
         pdfTransform.criarPdf(self.imagens, caminho_pdf)
 
-    def _passo5(self):
+    def _passo5(self, capitulo):
         self.prevenir.check_pasta_existe(f'/app/assets/paginas_img_compactada/{self.nome_manga}')
-        Compactar(file_list=self.imagens, nome_arquivo=f'{self.nome_manga} capitulo {self.capitulo}', nome_manga=self.nome_manga)
+        Compactar(file_list=self.imagens, nome_arquivo=f'{self.nome_manga} capitulo {capitulo}', nome_manga=self.nome_manga)
         
         for file in self.imagens:
             WinUse().os_use.remove(file)
