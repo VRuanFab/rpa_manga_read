@@ -6,7 +6,7 @@ authors = [
     {name = "Ruan Fabricio",email = "victor.ruanfab@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13, < 4"
+requires-python = ">=3.13, < 3.14"
 dependencies = [
     "python-dotenv (>=1.0.1,<2.0.0)",
     "selenium (>=4.29.0,<5.0.0)",
@@ -17,7 +17,19 @@ dependencies = [
     "pillow (>=11.1.0,<12.0.0)",
     "keyboard (>=0.13.5,<0.14.0)",
     "pywin32 (>=309,<310)",
-    "win10toast-click (>=0.1.2,<0.2.0)"
+    "win10toast-click (>=0.1.2,<0.2.0)",
+    "pyinstaller (>=6.12.0,<7.0.0)"
+]
+
+[tool.poetry.group.dev.dependencies]
+pyinstaller = "^6.12.0"
+
+[tool.poetry.scripts]
+build = "scripts.build:build"
+
+[tool.poetry]
+packages = [
+    {include = "scripts"}
 ]
 
 
