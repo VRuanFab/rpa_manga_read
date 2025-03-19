@@ -16,14 +16,17 @@ class RunRPA(Pages):
         self._definindoParametros()
         
         if self.terminar_em_capitulo == None:
-            super().__init__(self.nome_manga, self.capitulo)
-            self._passo1()
-            self._passo2()
-            self._passo3()
-            self._passo4(self.capitulo)
-            self._passo5(self.capitulo)
-            self.fechar_navegador()
-            Aviso(self.nome_manga).aviso_terminou()
+            try:
+                super().__init__(self.nome_manga, self.capitulo)
+                self._passo1()
+                self._passo2()
+                self._passo3()
+                self._passo4(self.capitulo)
+                self._passo5(self.capitulo)
+                self.fechar_navegador()
+                Aviso(self.nome_manga).aviso_terminou()
+            except:
+                WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
         else:
             for i in range(int(self.capitulo), int(self.terminar_em_capitulo) + 1):
                 try:
@@ -36,7 +39,7 @@ class RunRPA(Pages):
                     self.fechar_navegador()
                     Aviso(self.nome_manga).aviso_terminou()
                 except Exception as err:
-                    print(err)
+                    WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
         
     def _definindoParametros(self):
         self.terminar_em_capitulo = None
