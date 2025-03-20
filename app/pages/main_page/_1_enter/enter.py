@@ -6,6 +6,7 @@ class AcessarPagina:
         self.driver = Navegador(driver)
 
     def pesquisarManga(self, nome_manga):
+        time.sleep(2)
         nome_mange = nome_manga
         input_pesquisa = self.driver.procurarElemento('ID', 'header-search-input')
         input_pesquisa.send_keys(nome_mange)
