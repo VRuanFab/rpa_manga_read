@@ -13,11 +13,11 @@ class Navegador:
     def openNavegador(self, link):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--ignore-certificate-errors')
-        chrome_options.add_argument('--ignore-ssl-errors')
+        # chrome_options.add_argument('--ignore-ssl-errors')
         chrome_options.add_argument('--incognito')
         chrome_options.add_argument('--start-maximized')
-        chrome_options.add_argument('--disable-dev-shm-usage')
-        chrome_options.add_argument('--headless')
+        # chrome_options.add_argument('--disable-dev-shm-usage')
+        # chrome_options.add_argument('--headless')
         
         self.driver = webdriver.Chrome(options=chrome_options)
 

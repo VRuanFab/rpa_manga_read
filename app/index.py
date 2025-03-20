@@ -24,9 +24,13 @@ class RunRPA(Pages):
                 self._passo4(self.capitulo)
                 self._passo5(self.capitulo)
                 self.fechar_navegador()
-                Aviso(self.nome_manga).aviso_terminou()
+                try:
+                    Aviso(self.nome_manga).aviso_terminou()
+                except:
+                    pass
             except:
-                WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                # WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                raise Exception('erro')
         else:
             for i in range(int(self.capitulo), int(self.terminar_em_capitulo) + 1):
                 try:
@@ -37,15 +41,18 @@ class RunRPA(Pages):
                     self._passo4(capitulo=i)
                     self._passo5(capitulo=i)
                     self.fechar_navegador()
-                    Aviso(self.nome_manga).aviso_terminou()
+                    try:
+                        Aviso(self.nome_manga).aviso_terminou()
+                    except:
+                        pass
                 except Exception as err:
-                    WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                    # WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                    raise Exception('erro')
         
     def _definindoParametros(self):
         self.terminar_em_capitulo = None
         
         self.nome_manga = str(input('Nome do mangá:\n'))
-        # varios_caps = str(input('\nDeseja baixar mais de um capitulo? (S ou N)\n \n'))
         yes_or_no = [
                     {'desc': 'Sim', 'value':True},
                     {'desc': 'Não', 'value': False}
@@ -61,6 +68,8 @@ class RunRPA(Pages):
             self.criar_atalho = Curses(yes_or_no).opcoes('Deseja criar um atalho para a pasta de mangás em seu desktop (área de trabalho)?')
         else:
             self.criar_atalho = False
+            
+        # Curses().setString("Seu download está sendo feito")
 
 
     def _passo1(self):
