@@ -39,7 +39,8 @@ class RunRPA(Pages):
                     self.fechar_navegador()
                     Aviso(self.nome_manga).aviso_terminou()
                 except Exception as err:
-                    WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                    print(err)
+                    # WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
         
     def _definindoParametros(self):
         self.terminar_em_capitulo = None
