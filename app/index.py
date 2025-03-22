@@ -60,6 +60,8 @@ class RunRPA(Pages):
                     shutil.rmtree(WinUse().path_to_folder('/app/assets/paginas'))
                 self.fechar_navegador()
                 Aviso(self.nome_manga, i).smt_wrong()
+    
+        self.fechar_navegador()
         
     def _definindoParametros(self):
         self.terminar_em_capitulo = None
