@@ -1,9 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from app.utils.windows_use import WinUse
+from subprocess import CREATE_NO_WINDOW
 
 class Navegador:
     def __init__(self, otherDrive=None):
@@ -18,9 +20,13 @@ class Navegador:
         chrome_options.add_argument('--start-maximized')
         chrome_options.add_argument('--disable-dev-shm-usage')
         chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--log-level=3')
         
-        self.driver = webdriver.Chrome(options=chrome_options)
+        chrome_service = webdriver.ChromeService()
+        chrome_service.creation_flags = CREATE_NO_WINDOW
 
+        
+        self.driver = webdriver.Chrome(options=chrome_options, service=chrome_service)
         self.driver.get(link)
         return self.driver
         

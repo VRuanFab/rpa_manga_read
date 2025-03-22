@@ -16,8 +16,8 @@ class Aviso(Notify):
         self.send()
         
     def smt_wrong(self):
-        self.title="Deu erro"
-        self.message=f"Algo deu errado"
+        self.title="Erro ao baixar mangá"
+        self.message=f"Algo deu errado ao tentar baixar {self.nome_manga} cap {self.capitulo}"
         self.application_name="Download Mangá"
         self.icon= WinUse().path_to_folder('/imgs/manga_icon.ico', counterSlashes=True)
         self.send()

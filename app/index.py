@@ -5,7 +5,7 @@ from app.utils.prevencao_erros import Prevencao_erros
 from app.utils.compactar_imagens import Compactar
 from app.utils.toast import Aviso
 from app.utils.cursesAssets import Curses
-import time
+import shutil
 
 
 class RunRPA(Pages):
@@ -28,28 +28,36 @@ class RunRPA(Pages):
                     Aviso(self.nome_manga, self.capitulo).aviso_terminou()
                 except:
                     pass
-            except:
-                # WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                
+            except Exception as err:
+                if WinUse().os_use.path.exists(WinUse().path_to_folder('/app/assets/paginas')):
+                    shutil.rmtree(WinUse().path_to_folder('/app/assets/paginas'))
+                
                 Aviso(self.nome_manga, self.capitulo).smt_wrong()
-                raise Exception('erro')
+                raise Exception(f'erro: {err}')
         else:
-            for i in range(int(self.capitulo), int(self.terminar_em_capitulo) + 1):
-                try:
-                    super().__init__(self.nome_manga, i)
-                    self._passo1()
-                    self._passo2()
-                    self._passo3()
-                    self._passo4(capitulo=i)
-                    self._passo5(capitulo=i)
-                    self.fechar_navegador()
+            try:
+                for i in range(int(self.capitulo), int(self.terminar_em_capitulo) + 1):
                     try:
-                        Aviso(self.nome_manga, i).aviso_terminou()
-                    except:
-                        pass
-                except Exception as err:
-                    print(err)
-                    Aviso(self.nome_manga, i).smt_wrong()
-                    # WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                        super().__init__(self.nome_manga, i)
+                        self._passo1()
+                        self._passo2()
+                        self._passo3()
+                        self._passo4(capitulo=i)
+                        self._passo5(capitulo=i)
+                        self.fechar_navegador()
+                        
+                    except Exception as err:
+                        raise Exception(f'erro: {err}')
+                
+                try:
+                    Aviso(self.nome_manga, f'{self.capitulo} a {self.terminar_em_capitulo}').aviso_terminou()
+                except:
+                    pass
+            except:
+                if WinUse().os_use.path.exists(WinUse().path_to_folder('/app/assets/paginas')):
+                    shutil.rmtree(WinUse().path_to_folder('/app/assets/paginas'))
+                Aviso(self.nome_manga, i).smt_wrong()
         
     def _definindoParametros(self):
         self.terminar_em_capitulo = None
