@@ -33,6 +33,7 @@ class RunRPA(Pages):
                 if WinUse().os_use.path.exists(WinUse().path_to_folder('/app/assets/paginas')):
                     shutil.rmtree(WinUse().path_to_folder('/app/assets/paginas'))
                 
+                self.fechar_navegador()
                 Aviso(self.nome_manga, self.capitulo).smt_wrong()
                 raise Exception(f'erro: {err}')
         else:
@@ -57,6 +58,7 @@ class RunRPA(Pages):
             except:
                 if WinUse().os_use.path.exists(WinUse().path_to_folder('/app/assets/paginas')):
                     shutil.rmtree(WinUse().path_to_folder('/app/assets/paginas'))
+                self.fechar_navegador()
                 Aviso(self.nome_manga, i).smt_wrong()
         
     def _definindoParametros(self):
