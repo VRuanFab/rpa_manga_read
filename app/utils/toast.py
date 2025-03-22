@@ -1,20 +1,15 @@
 from app.utils.windows_use import WinUse
-from win10toast_click import ToastNotifier
+from notifypy import Notify
 
 
-class Aviso:
-    def __init__(self, nome_manga):
-        self.toaster = ToastNotifier()
+class Aviso(Notify):
+    def __init__(self, nome_manga, capitulo):
+        super().__init__()
         self.nome_manga = nome_manga
-        
-    def open_folder(self):
-        WinUse().os_use.startfile(WinUse().path_to_folder(f'/app/assets/manga_baixado/{self.nome_manga}', counterSlashes=True))
+        self.capitulo = capitulo
     
     def aviso_terminou(self, ):
-        self.toaster.show_toast(
-            "Download Concluido",
-            "Ver mangá",
-            icon_path= None,
-            duration= 10,
-            callback_on_click=self.open_folder
-        )
+        self.title="Mangá Baixado"
+        self.message=f"Mangá {self.nome_manga} capitulo {self.capitulo} baixado com sucesso!"
+        self.application_name="Download Mangá"
+        self.icon= WinUse().path_to_folder('/imgs/manga_icon.ico', counterSlashes=True)
