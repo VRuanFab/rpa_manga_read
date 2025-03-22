@@ -30,6 +30,7 @@ class RunRPA(Pages):
                     pass
             except:
                 # WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
+                Aviso(self.nome_manga, self.capitulo).smt_wrong()
                 raise Exception('erro')
         else:
             for i in range(int(self.capitulo), int(self.terminar_em_capitulo) + 1):
@@ -47,6 +48,7 @@ class RunRPA(Pages):
                         pass
                 except Exception as err:
                     print(err)
+                    Aviso(self.nome_manga, i).smt_wrong()
                     # WinUse().os_use.remove(WinUse().path_to_folder('/app/assets/paginas'))
         
     def _definindoParametros(self):
