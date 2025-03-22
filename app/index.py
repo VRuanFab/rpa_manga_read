@@ -25,7 +25,7 @@ class RunRPA(Pages):
                 self._passo5(self.capitulo)
                 self.fechar_navegador()
                 try:
-                    Aviso(self.nome_manga).aviso_terminou()
+                    Aviso(self.nome_manga, self.capitulo).aviso_terminou()
                 except:
                     pass
             except:
@@ -42,7 +42,7 @@ class RunRPA(Pages):
                     self._passo5(capitulo=i)
                     self.fechar_navegador()
                     try:
-                        Aviso(self.nome_manga).aviso_terminou()
+                        Aviso(self.nome_manga, i).aviso_terminou()
                     except:
                         pass
                 except Exception as err:
