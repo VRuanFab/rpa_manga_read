@@ -14,7 +14,7 @@ class Aviso:
         self.toaster.show_toast(
             "Download Concluido",
             "Ver mangá",
-            icon_path= WinUse().path_to_folder('/imgs/manga_icon.jpg', counterSlashes=True),
+            icon_path= None,
             duration= 10,
             callback_on_click=self.open_folder
         )

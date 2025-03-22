@@ -6,7 +6,7 @@ app/assets/manga_baixado/*
 tests
 rpa_manga/*
 notes
-app/assets/paginas_img_compactada
+app/assets/
 
 *.spec
 /build
